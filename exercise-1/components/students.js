@@ -1,5 +1,5 @@
-const express = require('express');
-let router = express.Router();
+const express = require('express')
+let router = express.Router()
 
 // fixed data
 let studentData = {
@@ -15,6 +15,12 @@ let studentData = {
             name: "Kevin Anderson",
             class: "DIN19SP",
             address: "Torikuja 7"
+        },
+        {
+            id: 3,
+            name: "Steve Jobs",
+            class: "DIN19SP",
+            address: "Omenatie 13"
         }
     ]
 }
@@ -24,7 +30,7 @@ router.get('/', (req,res) => res.json(studentData));
 
 // get by id
 router.get('/:studentId', (req,res) => {
-    const studentData = studentData.students.find( s => {
+    const studentResult = studentData.students.find( s => {
         if (s.id == req.params.studentId) {
             return true;
         }else{
@@ -51,6 +57,18 @@ router.post('/', (req,res) => {
 
 
     res.sendStatus(201);
+});
+
+// update a student
+router.put('/students/:studentId', (req,res,next) => {
+        if(err){
+            throw err;
+        }
+});
+
+// delete student
+router.delete('/:studentId', (req,res) => {
+    let studentId = ObjectID(req.body.id)
 });
 
 module.exports = router;

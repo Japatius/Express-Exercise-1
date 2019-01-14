@@ -27,7 +27,22 @@ let courseData = {
 router.get('/', (req,res) => res.json(courseData));
 
 // get by id
-
+router.get('/:courseId', (req,res) => {
+    const courseResult = courseData.courses.find( s => {
+        if (s.id == req.params.courseId) {
+            return true;
+        }else{
+            return false;
+        }
+    });
+    if (courseResult == undefined)
+    {
+        res.sendStatus(404)
+    }
+    else{
+        res.json(courseResult);
+    }
+})
 // add course
 router.post('/', (req,res) => {
     courseData.courses.push({

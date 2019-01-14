@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const students = require('./components/students');
 const courses = require('./components/courses');
+const grades = require('./components/grades');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -10,10 +11,12 @@ app.use(bodyParser.json());
 
 app.use('/students', students);
 app.use('/courses', courses);
+app.use('/grades', grades);
 
 
 app.get('/', (req, res) => res.send('!dlrow olleH'));
-app.get('/customers', function(req, res){
+
+/* app.get('/customers', function(req, res){
     
     const customerData = [
         {
@@ -58,5 +61,6 @@ app.route('/orders')
     .put((req,res) => res.send('PUT is working'))
     .delete((req,res) => res.send('DELETE is working'));
 
+    */
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
