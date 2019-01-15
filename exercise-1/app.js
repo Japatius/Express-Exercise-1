@@ -5,10 +5,7 @@ const students = require('./components/students');
 const courses = require('./components/courses');
 const grades = require('./components/grades');
 const bodyParser = require('body-parser');
-
 app.use(bodyParser.json());
-
-
 app.use('/students', students);
 app.use('/courses', courses);
 app.use('/grades', grades);

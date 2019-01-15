@@ -33,15 +33,14 @@ router.get('/:studentId', (req,res) => {
     const studentResult = studentData.students.find( s => {
         if (s.id == req.params.studentId) {
             return true;
-        }else{
+        } else {
             return false;
         }
     });
     if (studentResult == undefined)
     {
         res.sendStatus(404)
-    }
-    else{
+    } else {
         res.json(studentResult);
     }
 })
@@ -54,21 +53,28 @@ router.post('/', (req,res) => {
         class: req.body.class,
         address: req.body.address
     })
-
-
     res.sendStatus(201);
 });
 
 // update a student
-router.put('/students/:studentId', (req,res,next) => {
-        if(err){
-            throw err;
-        }
+router.put('/:studentId', (req,res,next) => {
+    let studentId = req.params.studentId ;
+    studentData.students.find(sd => {
+        if(sd.id == studentId){
+    
+    studentData.students[studentId].name = req.body.name,
+    studentData.students[studentId].class = req.body.class,
+    studentData.students[studentId].address = req.body.address
+    }})
+    res.json(studentData)
 });
 
 // delete student
 router.delete('/:studentId', (req,res) => {
-    let studentId = ObjectID(req.body.id)
+
+    let studentId = req.params.studentId - 1;
+    delete studentData.students[studentId];
+    res.send(201);
 });
 
 module.exports = router;

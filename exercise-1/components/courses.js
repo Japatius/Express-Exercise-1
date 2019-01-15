@@ -31,7 +31,7 @@ router.get('/:courseId', (req,res) => {
     const courseResult = courseData.courses.find( s => {
         if (s.id == req.params.courseId) {
             return true;
-        }else{
+        } else {
             return false;
         }
     });
@@ -54,6 +54,22 @@ router.post('/', (req,res) => {
 });
 
 // update a course
-router.put('/')
+router.put('/:courseId', (req,res) => {
+    let courseId = req.params.courseId ;
+    gradingData.grades.find(c => {
+        if(c.id == courseId){
+    
+    courseData.courses[courseId].name = req.body.name,
+    courseData.courses[courseId].description = req.body.description
+    }})
+    res.json(courseData)
+});
+
+// delete a course
+router.delete('/:courseId', (req,res) => {
+    let courseId = req.params.courseId - 1;
+    delete courseData.courses[courseId];
+    res.send(201);
+});
 
 module.exports = router;
