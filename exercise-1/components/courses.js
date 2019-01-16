@@ -55,14 +55,14 @@ router.post('/', (req,res) => {
 
 // update a course
 router.put('/:courseId', (req,res) => {
-    let coId = req.params.courseId ;
-    gradingData.grades.find(c => {
-        if(c.id == courseId){
+    let coId = req.params.courseId - 1 ;
+    courseData.courses.find(c => {
+        if(c.id == coId){
     
-    courseData.courses[coId].name = req.body.name,
-    courseData.courses[coId].description = req.body.description
+    courseData.courses[coId].name = req.body.name;
+    courseData.courses[coId].description = req.body.description;
     }})
-    res.json(courseData)
+    res.json("Updated!")
 });
 
 // delete a course
