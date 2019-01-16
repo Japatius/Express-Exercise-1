@@ -55,21 +55,21 @@ router.post('/', (req,res) => {
 
 // update a course
 router.put('/:courseId', (req,res) => {
-    let courseId = req.params.courseId ;
+    let coId = req.params.courseId ;
     gradingData.grades.find(c => {
         if(c.id == courseId){
     
-    courseData.courses[courseId].name = req.body.name,
-    courseData.courses[courseId].description = req.body.description
+    courseData.courses[coId].name = req.body.name,
+    courseData.courses[coId].description = req.body.description
     }})
     res.json(courseData)
 });
 
 // delete a course
 router.delete('/:courseId', (req,res) => {
-    let courseId = req.params.courseId - 1;
-    delete courseData.courses[courseId];
-    res.send(201);
+    let coId = req.params.courseId - 1;
+    delete courseData.courses[coId];
+    res.sendStatus(201);
 });
 
 module.exports = router;

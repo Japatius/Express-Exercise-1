@@ -57,23 +57,27 @@ router.post('/', (req,res) => {
 });
 
 // update a student
-router.put('/:studentId', (req,res,next) => {
-    let studentId = req.params.studentId ;
-    studentData.students.find(sd => {
-        if(sd.id == studentId){
+router.put('/:studentId', (req,res) => {
+    let sdId = req.params.studentId - 1;
+    studentData.students.find(s => {
+        if(s.id == sdId){
     
-    studentData.students[studentId].name = req.body.name,
-    studentData.students[studentId].class = req.body.class,
-    studentData.students[studentId].address = req.body.address
-    }})
-    res.json(studentData)
-});
+    studentData.students[sdId].name = req.body.name;
+    studentData.students[sdId].class = req.body.class;
+    studentData.students[sdId].address = req.body.address;
+    res.json('Updated!')
+    } else if(s.id !== sdId) {
+        res.send(404);
+    }
+})
+    
+})
 
 // delete student
 router.delete('/:studentId', (req,res) => {
 
-    let studentId = req.params.studentId - 1;
-    delete studentData.students[studentId];
+    let sdId = req.params.studentId - 1;
+    delete studentData.students[sdId];
     res.send(201);
 });
 

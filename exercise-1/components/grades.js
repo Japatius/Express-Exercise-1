@@ -61,13 +61,13 @@ router.post('/', (req,res) => {
 
 // update grading data 
 router.put('/:gradeId', (req,res) => {
-    let gradeId = req.params.gradeId ;
-    gradingData.grades.find(gd => {
-        if(gd.id == gradeId){
+    let grId = req.params.gradeId - 1;
+    gradingData.grades.find(g => {
+        if(g.id == grId){
     
-    gradingData.grades[gradeId].name = req.body.name,
-    gradingData.grades[gradeId].class = req.body.class,
-    gradingData.grades[gradeId].address = req.body.address
+    gradingData.grades[grId].student = req.body.student;
+    gradingData.grades[grId].completedCourse = req.body.completedCourse;
+    gradingData.grades[grId].grade = req.body.grade;
     }})
     res.json(gradingData)
 });
@@ -75,9 +75,9 @@ router.put('/:gradeId', (req,res) => {
 
 // delete grading data 
 router.delete('/:gradeId', (req,res) => {
-    let gradeId = req.params.gradeId - 1;
-    delete gradingData.grades[gradeId];
-    res.send(201);
+    let grId = req.params.gradeId - 1;
+    delete gradingData.grades[grId];
+    res.sendStatus(201);
 });
 
 
